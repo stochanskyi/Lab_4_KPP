@@ -14,8 +14,13 @@ public class AnalyzingManager {
 
     private boolean isAnalyzingCompeted = false;
 
-    public AnalyzingManager(DirectoriesCache cache) {
+    private Runnable completedCallback;
+
+    private final AnalyzingData data = new AnalyzingData();
+
+    public AnalyzingManager(DirectoriesCache cache, AnalyzingData data, Runnable completedCallback) {
         this.cache = cache;
+        this.completedCallback = completedCallback;
     }
 
     public boolean addDirectory(File dir) {
@@ -33,8 +38,7 @@ public class AnalyzingManager {
             waitingThreadsCount++;
 
             if (cache.isEmpty() && waitingThreadsCount == AppConfigs.THREADS_COUNT) {
-                isAnalyzingCompeted = true;
-                cache.notifyAll();
+                processAnalyzingFinish();
                 return null;
             }
 
@@ -51,6 +55,30 @@ public class AnalyzingManager {
             if (isAnalyzingCompeted) return null;
             return cache.getNextDirectory();
         }
+    }
+
+    public void onNewFileSize(long size) {
+        synchronized (data) {
+            data.onNewFileSize(size);
+        }
+    }
+
+    public void onNewFileName(String name) {
+        synchronized (data) {
+            data.onNewFileName(name);
+        }
+    }
+
+    public void onNewInnerDirectory() {
+        synchronized (data) {
+            data.onNewInnerDirectory();
+        }
+    }
+
+    private void processAnalyzingFinish() {
+        isAnalyzingCompeted = true;
+        completedCallback.run();
+        cache.notifyAll();
     }
 
     private boolean hasSleepingThreads() {

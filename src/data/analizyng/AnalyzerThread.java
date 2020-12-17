@@ -35,6 +35,8 @@ public class AnalyzerThread extends Thread {
 
 
     private void processNestedDirectory(File dir) {
+        manager.onNewInnerDirectory();
+
         var isAdded = manager.addDirectory(dir);
         if (isAdded) return;
 
@@ -42,8 +44,7 @@ public class AnalyzerThread extends Thread {
     }
 
     private void processFile(File file) {
-
-        System.out.println("by" + Thread.currentThread().getName() + "File processed: " + file.getPath());
-        //TODO process file size etc.
+        manager.onNewFileSize(file.length());
+        manager.onNewFileName(file.getName());
     }
 }
