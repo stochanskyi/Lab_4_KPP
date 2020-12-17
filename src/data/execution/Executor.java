@@ -32,7 +32,7 @@ public class Executor {
             thread.setName(String.valueOf(ai.incrementAndGet()));
             thread.start();
 
-            var monitor = new ThreadMonitor(thread, 2, consumer::onAnalyzingUpdate);
+            var monitor = new ThreadMonitor(thread, 500, consumer::onAnalyzingUpdate);
             monitors.add(monitor);
             monitor.startMonitoring();
         }

@@ -16,11 +16,12 @@ public class AnalyzingManager {
 
     private Runnable completedCallback;
 
-    private final AnalyzingData data = new AnalyzingData();
+    private final AnalyzingData data;
 
     public AnalyzingManager(DirectoriesCache cache, AnalyzingData data, Runnable completedCallback) {
         this.cache = cache;
         this.completedCallback = completedCallback;
+        this.data = data;
     }
 
     public boolean addDirectory(File dir) {
