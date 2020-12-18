@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af11997e-4e69-4f26-97e6-fe95c3b6d98e" name="Default Changelist" comment="Implement monitors">
-      <change afterPath="$PROJECT_DIR$/src/presentation/App.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/presentation/App.java" afterDir="false" />
+    <list default="true" id="af11997e-4e69-4f26-97e6-fe95c3b6d98e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/data/execution/ThreadRunningData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/analizyng/AnalyzerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/analizyng/AnalyzerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/analizyng/AnalyzingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/analizyng/AnalyzingData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/analizyng/AnalyzingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/analizyng/AnalyzingManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/execution/Executor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/execution/Executor.java" afterDir="false" />
     </list>
@@ -116,27 +116,45 @@
       <option name="project" value="LOCAL" />
       <updated>1608225988037</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implement UI for app">
+      <created>1608242374433</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1608242374433</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add gitignore" />
     <MESSAGE value="Implement navigating between files" />
     <MESSAGE value="Implement monitors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement monitors" />
+    <MESSAGE value="Implement UI for app" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement UI for app" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/analizyng/AnalyzingManager.java</url>
-          <line>62</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/data/execution/ThreadRunningData.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/data/analizyng/AnalyzingData.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="12" />
+          <url>file://$PROJECT_DIR$/src/data/analizyng/AnalyzerThread.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/analizyng/AnalyzingManager.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/data/analizyng/AnalyzerThread.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

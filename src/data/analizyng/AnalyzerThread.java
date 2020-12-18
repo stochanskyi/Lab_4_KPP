@@ -12,12 +12,16 @@ public class AnalyzerThread extends Thread {
 
     @Override
     public void run() {
-        System.out.println("running");
+        manager.onThreadRunningStarted();
         File directory = manager.getNextDirectory();
         while (directory != null) {
             processDirectory(directory);
             directory = manager.getNextDirectory();
+            if (directory == null) {
+                System.out.println("");
+            }
         }
+        manager.onThreadRunningEnded();
     }
 
     private void processDirectory(File dir) {
@@ -32,7 +36,6 @@ public class AnalyzerThread extends Thread {
         if (entity.isDirectory()) processNestedDirectory(entity);
         else processFile(entity);
     }
-
 
     private void processNestedDirectory(File dir) {
         manager.onNewInnerDirectory();

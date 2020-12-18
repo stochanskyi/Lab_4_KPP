@@ -4,13 +4,14 @@ import app.AppConfigs;
 import data.filesManagement.DirectoriesCache;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class AnalyzingManager {
 
     private final DirectoriesCache cache;
 
     private int waitingThreadsCount = 0;
+
+    private int killedThreads = 0;
 
     private boolean isAnalyzingCompeted = false;
 
@@ -22,6 +23,18 @@ public class AnalyzingManager {
         this.cache = cache;
         this.completedCallback = completedCallback;
         this.data = data;
+    }
+
+    public void onThreadRunningStarted() {
+        synchronized (data) {
+            data.setStartTimeForThread(Thread.currentThread().getName(), System.currentTimeMillis());
+        }
+    }
+
+    public synchronized void onThreadRunningEnded() {
+        data.setEndTimeForThread(Thread.currentThread().getName(), System.currentTimeMillis());
+        killedThreads++;
+        validateAnalyzingFinished();
     }
 
     public boolean addDirectory(File dir) {
@@ -39,7 +52,8 @@ public class AnalyzingManager {
             waitingThreadsCount++;
 
             if (cache.isEmpty() && waitingThreadsCount == AppConfigs.THREADS_COUNT) {
-                processAnalyzingFinish();
+                isAnalyzingCompeted = true;
+                cache.notifyAll();
                 return null;
             }
 
@@ -77,12 +91,16 @@ public class AnalyzingManager {
     }
 
     private void processAnalyzingFinish() {
-        isAnalyzingCompeted = true;
         completedCallback.run();
-        cache.notifyAll();
     }
 
     private boolean hasSleepingThreads() {
         return waitingThreadsCount > 0;
+    }
+
+    private void validateAnalyzingFinished() {
+        if (killedThreads == AppConfigs.THREADS_COUNT) {
+            processAnalyzingFinish();
+        }
     }
 }
